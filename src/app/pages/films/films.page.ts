@@ -1,3 +1,4 @@
+import { ApiService } from './../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
@@ -13,10 +14,10 @@ export class FilmsPage implements OnInit {
 
   films: Observable<any>;
 
-  constructor(private navController: NavController, private router: Router, private http: HttpClient) { }
+  constructor(private navController: NavController, private router: Router, private http: HttpClient, private apiService: ApiService) { }
 
   ngOnInit() {
-    this.films = this.http.get('https://swapi.dev/api/films');
+    this.films = this.apiService.getFilms();
   }
 
   openDetails(film){
