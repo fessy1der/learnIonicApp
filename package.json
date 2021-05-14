@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~11.2.0",
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
+    "@ionic-native/core": "^5.33.0",
+    "@ionic-native/email-composer": "^5.33.0",
     "@ionic/angular": "^5.5.2",
     "@ionic/lab": "^3.2.10",
     "rxjs": "~6.6.0",
@@ -44,6 +46,7 @@
     "cordova-android": "^9.1.0",
     "cordova-ios": "^6.2.0",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-email": "^1.2.7",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -73,7 +76,8 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-email": {}
     },
     "platforms": [
       "ios",
