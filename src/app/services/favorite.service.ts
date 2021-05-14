@@ -10,6 +10,7 @@ export class FavoriteService {
 
   constructor(private storage: Storage){};
 
+
   getAllFavoriteFilms() {
     return this.storage.get(STORAGE_KEY);
   }

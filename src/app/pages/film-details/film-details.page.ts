@@ -1,3 +1,5 @@
+import { Storage } from '@ionic/storage';
+import { FavoriteService } from './../../services/favorite.service';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { ApiService } from './../../services/api.service';
 import { HttpClient } from '@angular/common/http';
@@ -12,17 +14,27 @@ import { ActivatedRoute } from '@angular/router';
 
 export class FilmDetailsPage implements OnInit {
   film: any;
+  isFavorite = false;
+  filmId = null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpClient,
     private apiService: ApiService,
-    private emailComposer: EmailComposer) { }
+    private emailComposer: EmailComposer,
+    private favorite: FavoriteService,
+    private storage: Storage) { }
 
-  ngOnInit() {
-    let id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.apiService.getFilm(id).subscribe( res => {
+  async ngOnInit() {
+    await this.storage.create();
+    this.filmId = this.activatedRoute.snapshot.paramMap.get('id');
+
+    this.apiService.getFilm(this.filmId).subscribe( res => {
       this.film = res;
+    });
+
+    this.favorite.isFavorite(this.filmId).then(isFav => {
+      this.isFavorite = isFav;
     });
   }
 
@@ -34,5 +46,17 @@ export class FilmDetailsPage implements OnInit {
       isHtml: true
     };
     this.emailComposer.open(email);
+  }
+
+  favoriteFilm(){
+    return this.favorite.favoriteFilm(this.filmId).then(() => {
+      this.isFavorite = true;
+    });
+  }
+
+  unfavoriteFilm(){
+    return this.favorite.unfavoriteFilm(this.filmId).then(() => {
+      this.isFavorite = false;
+    });
   }
 }
