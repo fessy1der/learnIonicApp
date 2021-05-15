@@ -15,12 +15,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-card *ngIf="film">
+<ion-content padding>
+
+  <ion-card *ngIf="film" class="movie-card">
+    <ion-card-header>Episode {{ film.episode_id }}: {{ film.title }}</ion-card-header>
     <ion-card-content>
       {{ film.opening_crawl }}
     </ion-card-content>
+
+    <ion-item class="movie-info" lines="none">
+      <ion-icon name="film" slot="start"></ion-icon>
+      Director: {{ film.director }}
+    </ion-item>
+
+    <ion-item class="movie-info" lines="none">
+      <ion-icon name="calendar" slot="start"></ion-icon>
+      Release Date: {{ film.release_date | date }}
+    </ion-item>
   </ion-card>
+
   <ion-button color="tertiary" expand="full" (click)="shareFilm()">Share by Email</ion-button>
+
 </ion-content>
 
